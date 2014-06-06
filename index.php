@@ -34,13 +34,13 @@
   </script>
   <?php
     function fetch_data($url){
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_TIMEOUT, 20);
-        $result = curl_exec($ch);
-        curl_close($ch);
-        return $result;
+      $ch = curl_init();
+      curl_setopt($ch, CURLOPT_URL, $url);
+      curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+      curl_setopt($ch, CURLOPT_TIMEOUT, 20);
+      $result = curl_exec($ch);
+      curl_close($ch);
+      return $result;
     }
     $count = 5; // Set the number of pictures to display 
     $client_id = "INSERT_CLIENT_ID"; // Client ID from registered client
@@ -63,20 +63,19 @@
             if(!empty($parse_data)):
               foreach ($parse_data->data as $photo):
                 $img = $photo->images->{$display_size};
-                $cap = $photo->caption->{"text"};
-                echo "<div class='slide'>";
-                echo "<a href='{$photo->link}'><img src='{$img->url}' /></a>";
-                if (!empty($cap)):
-                  echo "<div class='caption' style='bottom:0'>";
-                  echo "<p>{$cap}</p>";
-                  echo "</div>";
-                endif;
-                echo "</div>";
-              endforeach; 
-            else:
-              echo "<h1>Not Feed Available</h1>";
-            endif;
-          ?>
+                $cap = $photo->caption->{"text"}; ?>
+                <div class='slide'>
+                  <a href='<?php echo $photo->link ?>'><img src='<?php echo $img->url ?>' /></a>
+                  <?php if (!empty($cap)): ?>
+                    <div class='caption' style='bottom:0'>
+                      <p><?php echo $cap ?></p>
+                    </div>
+                  <?php endif; ?>
+                </div>
+            <?php endforeach; 
+            else: ?>
+              <h1>Not Feed Available</h1>
+            <?php endif; ?>
         </div>
         <a href="#" class="prev"><img src="img/arrow-prev.png" width="24" height="43" alt="Arrow Prev"></a>
         <a href="#" class="next"><img src="img/arrow-next.png" width="24" height="43" alt="Arrow Next"></a>

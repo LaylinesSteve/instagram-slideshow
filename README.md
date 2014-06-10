@@ -12,4 +12,5 @@ Slideshow to display Instagram photos.
 
 ## Acknowledgements
 
-- Nathan Searles, jQuery Slideshow
+- [Nathan Searles](https://github.com/nathansearles), jQuery Slideshow
+- [Jelled](http://jelled.com), Find Instagram ID
